@@ -755,7 +755,7 @@ création des liens symbolique
 
     c:\wamp\bin\php\php5.3.0\php.exe c:\wamp\bin\php\php5.3.0\PEAR\ezc\PersistentObjectDatabaseSchemaTiein\rungenerator.php -t -o -p "prefix" -s mysql://root:@localhost/database -f mysql c:\test2\sql\ c:\test2\class\
 
-###PATCH EZ 4 vers PHP5.6
+### PATCH EZ 4 vers PHP5.6
 ``` patch
 diff -rupN lib_original/ezutils/classes/ezmodulefunctioninfo.php lib/ezutils/classes/ezmodulefunctioninfo.php
 --- lib_original/ezutils/classes/ezmodulefunctioninfo.php       2008-08-20 17:39:46.000000000 +0200
