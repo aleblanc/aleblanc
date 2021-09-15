@@ -1306,9 +1306,12 @@ https://hub.docker.com/r/szalek/pentest-tools/
 => uniscan + xsssniper + wpscan  + sn1per
 SNIPER : use xerosecurity/sn1per, meilleur (voir ci dessous)
 
-## SEO
+## SEO : List d'outils pratiques online pour l'optimisation de sites internet
 
-List d'outils pratiques online pour l'optimisation de sites internet
+### Extraction des recherches bing dans les logs apache ou nginx :
+
+	awk '($11 !~ /^"?-?"?$/ && $11 !~ /monsite.com/) {print $11}' httpd-access.log | grep 'q='  > bingsearch.csv
+
 
 ### Google Analytics dans un email
 
