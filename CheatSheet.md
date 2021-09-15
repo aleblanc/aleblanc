@@ -642,7 +642,7 @@ création des liens symbolique
 ### clear cache by grep
     find var/www/cache/template-block/ -name "*.cache" -exec grep -iHl "MONTEXTEDANSLECACHE" {} \; -delete
 
-##ez publish fetch subtree avec class_identifier filter
+### ez publish fetch subtree avec class_identifier filter
 ``` php
     $subtree_equity=eZContentObjectTreeNode::subTreeByNodeID (
         array ('Limitation'  => array(),
@@ -901,6 +901,23 @@ Classe doit faire une seule chose => SOLID => single responsability
     mysql -u user -p --default-character-set=utf8 --max_allowed_packet=64M mabase < ~/mabase.sql
 ``` 
 
+## Vagrant
+### ACCES MYSQL LOCAL VAGRANT
+
+    SSH into your Vagrant: vagrant ssh
+    Change to root user sudo su
+    Log as root user to your MySQL DB: mysql -uroot
+    Run the following queries (don't forget to replace yourdatabase, _youruser_ and your\password_):
+    GRANT ALL PRIVILEGES ON your_database.* TO 'your_user'@'127.0.0.1' identified by 'your_password';
+    FLUSH PRIVILEGES;
+    You now have granted your user to login to using the host "127.0.0.1"
+    You can now go to PhpStorm and test your connection again and it should work!
+
+### MOUNT NAS vagrant :
+
+    sudo apt-get install cifs-utils
+    sudo mount -t cifs -o noperm,user=$userinput //X.X.X.X/a/b/c web/var/site
+
 ## Docker 
 ### Convert video avec handbrake :
 
@@ -923,25 +940,6 @@ UI :
     "php bin/console doctrine:schema:drop --force --env=dev",
     "@symfony-scripts"
     ],
-
-## Vagrant
-### ACCES MYSQL LOCAL VAGRANT
-
-    SSH into your Vagrant: vagrant ssh
-    Change to root user sudo su
-    Log as root user to your MySQL DB: mysql -uroot
-    Run the following queries (don't forget to replace yourdatabase, _youruser_ and your\password_):
-    GRANT ALL PRIVILEGES ON your_database.* TO 'your_user'@'127.0.0.1' identified by 'your_password';
-    FLUSH PRIVILEGES;
-    You now have granted your user to login to using the host "127.0.0.1"
-    You can now go to PhpStorm and test your connection again and it should work!
-
-## MOUNT NAS vagrant :
-
-    sudo apt-get install cifs-utils
-    sudo mount -t cifs -o noperm,user=$userinput //X.X.X.X/a/b/c web/var/site
-
-## Docker
 ### docker lancé alpine en mode interactif
     docker run --name=container-alpine -it alpine ash
 
@@ -1065,9 +1063,10 @@ Help -> Edit Custom VM options
     -XX:+HeapDumpOnOutOfMemoryError
     -XX:-OmitStackTraceInFastThrow
 
-### alias .bash_profile
+### alias .bash_profile 
 
-#### ajout / modification
+ajout / modification
+
     nano .bash_profile
     source .bash_profile
     
@@ -1155,7 +1154,7 @@ Scan plage d'IP :
 
     docker run --rm -v $(pwd):/zap/wrk/:rw -t ictu/zap2docker-weekly zap-baseline.py  -t http://www.xxxx.x -r testreport.html
 
-### sn1per (fonctionne bien) :
+#### sn1per (fonctionne bien) :
 
     docker run --name=sn1per -v $(pwd):/usr/share/sniper/loot/workspace/:rw  -it --rm xerosecurity/sn1per
 
@@ -1245,7 +1244,7 @@ SNIPER : use xerosecurity/sn1per, meilleur (voir ci dessous)
 
 List d'outils pratiques online pour l'optimisation de sites internet
 
-### Google Analytics dasn un email
+### Google Analytics dans un email
 
 Image avec en SRC :
 https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432370&t=event&ec=Test-event-cat&ea=Test-event-action&el=test-label&ev=1
