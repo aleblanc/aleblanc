@@ -217,10 +217,33 @@ merge lexik translations
 
 ## UNIX
 
+### Téléchargement des IP par pays et filtrage des IP française
+
+	/usr/bin/wget  "https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP" -O /tmp/IP2LOCATION-LITE-DB1.CSV.ZIP && cd /tmp/ && /usr/bin/unzip -o /tmp/IP2LOCATION-LITE-DB1.CSV.ZIP && less /tmp/IP2LOCATION-LITE-DB1.CSV | grep 'FR' > /tmp/geofr.csv
+
 ### mettre certificat ssl à jour dans php.ini pour Curl :
 
     wget https://curl.haxx.se/ca/cacert.pem
     curl.cainfo = "/path/to/cacert.pem"
+    
+### tunnel de connexion ssh inversé
+
+Sur le serveur1 :
+ssh -N -R 10022:127.0.0.1:22 user_serveur2@X.X.X.X
+
+Sur le serveur2 :
+ssh -p 10022 user_serveur1@127.0.0.1
+
+### BUG write only Read-only file system :
+
+	su
+	fdisk -l
+	fsck.ext4 -f -y /dev/sda2
+	sudo reboot
+	sudo /etc/init.d/elasticsearch restart
+	sudo service mariadb restart
+	sudo service nginx restart
+	sudo service php7.0-fpm restart
 
 ### archiver / desarchiver
 
@@ -406,6 +429,10 @@ wget avec user agent pet autre ip our la nouvelle infra
 wget à travers un proxy
 
     https_proxy='http://1.2.3.X:12345' wget https://www.exemple.com
+    
+wget avec reprise de téléchargement
+
+    wget -Uri  https://www.site.com/fichier -OutFile fichier -Resume
 
 ### Use CURL for ftp :
 
@@ -414,6 +441,10 @@ wget à travers un proxy
 ### Use CURL for POST data :
 
     curl 'https://www.exemple.com' --data-raw 'parameter=1&param2=2'
+
+### CURL avec reprise de téléchargement
+
+    curl -L -O -C - https://www.site.com/fichier --ssl-no-revoke
 
 ### file info
 
@@ -438,9 +469,47 @@ Use
     npm run cy:open
     npm run e2e > report.txt
 
+### Installer PostgreSQL et configuration de Symfony
+
+	sudo apt-get install postgresql postgresql-client
+	sudo apt-get install php7.4-pgsql
+
+	sudo passwd postgres
+	su postgres
+	psql
+	postgres=# help
+	postgres=# CREATE USER USERNAME WITH PASSWORD 'xxx';
+	postgres=# CREATE DATABASE "DATABASENAME";
+	postgres=# GRANT ALL ON DATABASE "DATABASENAME" TO USERNAME;
+
+	nano .env.locale 
+	DATABASE_URL=postgresql://USERNAME:xxx@127.0.0.1:5432/DATABASENAME?serverVersion=11&charset=utf8
+
+### Installer goaccess
+
+	sudo apt-get install libncurses-dev
+	sudo apt-get install build-essential
+	sudo apt-get install libgeoip-dev
+	sudo apt-get install libncursesw5-dev libglib2.0-dev libgeoip-dev libtokyocabinet-dev
+	sudo nano /usr/local/etc/goaccess.conf
+	goaccess /var/www/site/logs/httpd-access.log -c -o /var/www/site/html/goaccess_report.html --real-time-html
+
+### Installer munin
+
+	sudo apt-get install munin munin-node
+	cd /var/www/site/html/
+	sudo ln -s /var/cache/munin/www/ munin
+ 
 -----
 
 ## Composer
+
+### speed up composer :
+
+	composer global require hirak/prestissimo
+	composer global require rubenrua/symfony-clean-tags-composer-plugin
+
+	composer install --no-dev
 
 ### require specific branche / version
 
