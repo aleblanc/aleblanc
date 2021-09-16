@@ -469,22 +469,6 @@ Use
     npm run cy:open
     npm run e2e > report.txt
 
-### Installer PostgreSQL et configuration de Symfony
-
-	sudo apt-get install postgresql postgresql-client
-	sudo apt-get install php7.4-pgsql
-
-	sudo passwd postgres
-	su postgres
-	psql
-	postgres=# help
-	postgres=# CREATE USER USERNAME WITH PASSWORD 'xxx';
-	postgres=# CREATE DATABASE "DATABASENAME";
-	postgres=# GRANT ALL ON DATABASE "DATABASENAME" TO USERNAME;
-
-	nano .env.locale 
-	DATABASE_URL=postgresql://USERNAME:xxx@127.0.0.1:5432/DATABASENAME?serverVersion=11&charset=utf8
-
 ### Installer goaccess
 
 	sudo apt-get install libncurses-dev
@@ -888,15 +872,7 @@ lib/ezc/Archive/src/entry.php
 
     curl http://localhost:8983/solr/select/?q=meta_class_identifier_ms:%22MA_CLASSE%22
 
-## Raspberry
-### send signal radio
-    python3 send.py  5393
-
-## Design pattern
-### Classe 
-
-Si VELO attribut ROUE, se posser la question : Madame VELO que fait votre ROUE ?
-Classe doit faire une seule chose => SOLID => single responsability
+---------
 
 ## SQL
 
@@ -966,6 +942,31 @@ Classe doit faire une seule chose => SOLID => single responsability
 ``` shell
     mysql -u user -p --default-character-set=utf8 --max_allowed_packet=64M mabase < ~/mabase.sql
 ``` 
+
+
+### PostgreSQL : Installer et configuration de Symfony
+
+	sudo apt-get install postgresql postgresql-client
+	sudo apt-get install php7.4-pgsql
+
+	sudo passwd postgres
+	su postgres
+	psql
+	postgres=# help
+	postgres=# CREATE USER USERNAME WITH PASSWORD 'xxx';
+	postgres=# CREATE DATABASE "DATABASENAME";
+	postgres=# GRANT ALL ON DATABASE "DATABASENAME" TO USERNAME;
+
+	nano .env.locale 
+	DATABASE_URL=postgresql://USERNAME:xxx@127.0.0.1:5432/DATABASENAME?serverVersion=11&charset=utf8
+
+### Dump / import PostgreSQL
+
+	pg_dump -U user -h localhost database > database.sql
+	
+	
+
+------
 
 ## Vagrant
 ### ACCES MYSQL LOCAL VAGRANT
@@ -1370,3 +1371,18 @@ https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432
 
 9. Similar web:
    https://www.similarweb.com/website/xxx.x
+
+
+--------
+
+## Raspberry
+### send signal radio
+    python3 send.py  5393
+
+-------
+
+## Design pattern
+### Classe 
+
+Si VELO attribut ROUE, se posser la question : Madame VELO que fait votre ROUE ?
+Classe doit faire une seule chose => SOLID => single responsability
