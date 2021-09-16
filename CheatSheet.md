@@ -962,8 +962,8 @@ lib/ezc/Archive/src/entry.php
 
 ### Dump / import PostgreSQL
 
-	pg_dump -U user -h localhost database > database.sql
-	
+	pg_dump -U user -h localhost  -Fc database > database.sql
+	pg_restore -d database  -U user -h localhost -v -c  database.sql
 	
 
 ------
