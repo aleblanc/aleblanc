@@ -469,6 +469,15 @@ Use
     npm run cy:open
     npm run e2e > report.txt
 
+### Ajouter certificat ssl avec certbot https://certbot.eff.org/
+
+	apt-get install certbot python-certbot-nginx
+	certbot --nginx
+
+Exemple d'ajout
+
+	sudo certbot --expand  -d  www.site1.com -d www.site2.com
+
 ### Installer goaccess
 
 	sudo apt-get install libncurses-dev
