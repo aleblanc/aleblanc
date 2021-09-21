@@ -212,7 +212,18 @@ merge lexik translations
     
     // generates getter/setter methods for one specific Entity
     php bin/console make:entity --regenerate App\\Entity\\Country
+    
+#### Base de données historique météo
 
+``` php
+        for ($i = 1890; $i < 2012; ++$i) {
+            $output->writeln('GET ' . $i);
+            if (!file_exists($savePath)) {
+                exec('wget -O ' . $savePath . ' ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/' . $i . '.csv.gz');
+            }
+    	}
+	//station ids : ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
+```
 ---------------
 
 ## UNIX
