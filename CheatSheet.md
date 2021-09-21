@@ -217,10 +217,7 @@ merge lexik translations
 
 ``` php
         for ($i = 1890; $i < 2012; ++$i) {
-            $output->writeln('GET ' . $i);
-            if (!file_exists($savePath)) {
-                exec('wget -O ' . $savePath . ' ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/' . $i . '.csv.gz');
-            }
+		exec('wget -O ' . $i . '.csv.gz ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/by_year/' . $i . '.csv.gz');
     	}
 	//station ids : ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
 ```
