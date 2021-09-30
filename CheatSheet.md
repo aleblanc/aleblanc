@@ -5,7 +5,6 @@
   - [Extract / update translations](#extract--update-translations)
   - [lexik](#lexik)
   - [doctrine](#doctrine)
-- [```](#)
 - [UNIX](#unix)
   - [Téléchargement des IP par pays et filtrage des IP française](#tlchargement-des-ip-par-pays-et-filtrage-des-ip-franaise)
   - [mettre certificat ssl à jour dans php.ini pour Curl :](#mettre-certificat-ssl--jour-dans-phpini-pour-curl-)
@@ -148,7 +147,7 @@
   - [send signal radio](#send-signal-radio)
 - [Design pattern](#design-pattern)
   - [Classe](#classe)
-  - 
+
 -----
 
 ## Symfony
@@ -216,6 +215,7 @@ merge lexik translations
     	}
 	//station ids : ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
 ```
+
 ---------------
 
 ## UNIX
