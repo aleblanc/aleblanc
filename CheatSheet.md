@@ -160,6 +160,13 @@
 
 NB : take last release here : https://github.com/fabpot/local-php-security-checker/releases/
 
+
+### Installer une version beta de Symfony
+
+    curl -s https://getcomposer.org/installer | php
+    php composer.phar create-project symfony/skeleton:"^5.4"  symfony-project -s dev
+
+
 ### Extract / update translations
 
     php app/console translation:extract fr --dir=./src/ --output-dir=./app/Resources/translations
