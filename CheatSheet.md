@@ -160,6 +160,32 @@
 
 NB : take last release here : https://github.com/fabpot/local-php-security-checker/releases/
 
+Or use Packagist Security Checker from Github advisory database :
+
+    composer require aleblanc/security-checker --dev
+    php vendor/aleblanc/security-checker/security-checker security:check
+
+
+### PHP CS 
+
+    wget https://cs.symfony.com/download/php-cs-fixer-v3.phar
+    php php-cs-fixer.phar fix -v src/ --config=.php-cs-fixer.php
+    
+
+Configuration .php-cs-fixer.php :
+
+``` php
+$config = new PhpCsFixer\Config();
+
+$config->setRules(array_merge($config->getRules(), [
+    '@Symfony' => true,
+    'ordered_imports' => ['imports_order' => ['class', 'function', 'const'], 'sort_algorithm' => 'none'],
+    'full_opening_tag' => false,
+]));
+
+return $config;
+```
+
 
 ### Installer une version beta de Symfony
 
@@ -481,6 +507,11 @@ Use
     yarn install
     npm run cy:open
     npm run e2e > report.txt
+    
+### Yarn security audit
+
+    yarn audit --level high
+    yarn audit --level moderate
 
 ### Ajouter certificat ssl avec certbot https://certbot.eff.org/
 
