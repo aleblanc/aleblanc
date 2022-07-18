@@ -589,6 +589,18 @@ faire les modification de composer.json à la main::
 
 ## Git
 
+### Copy github repo in gitlab repo with all history 
+
+	  mkdir copy
+	  cd copy/
+	  git clone --mirror git@github.com:xxx/yyy.git ./
+	  git tag
+	  git branch -a
+	  git remote rm origin
+	  git remote add origin git@gitlab.com:xxx/yyy.git
+	  git push origin --all
+	  git push --tags
+	  
 ### create patch
 
     git patch diff
