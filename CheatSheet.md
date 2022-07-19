@@ -1,6 +1,5 @@
 
-# Table of contents ( generator : https://luciopaiva.com/markdown-toc/ )
-[[_TOC_]]
+## Table of contents ( generator : https://luciopaiva.com/markdown-toc/ )
 
 -----
 
