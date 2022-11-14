@@ -390,6 +390,23 @@ Exemple d'ajout
 	cd /var/www/site/html/
 	sudo ln -s /var/cache/munin/www/ munin
  
+### Installer argos-translate (traduction offline)
+
+	sudo apt install build-essential libncurses5-dev zlib1g-dev libnss3-dev libgdbm-dev libssl-dev libsqlite3-dev libffi-dev libreadline-dev curl libbz2-dev
+	sudo wget https://www.python.org/ftp/python/3.9.9/Python-3.9.9.tgz
+	tar -xvf Python-3.9.9.tgz
+	cd Python-3.9.9
+	sudo apt-get install liblzma-dev
+	sudo apt-get install lzma
+	./configure --enable-optimizations
+	make -j 4
+	sudo make altinstall
+	python3.9 --version
+	python3.9 -m pip install argostranslate
+	python3.9  /var/www/.local/bin/argospm update
+	python3.9  /var/www/.local/bin/argospm install translate-en_fr
+	python3.9  /var/www/.local/bin/argos-translate --from-lang en --to-lang fr "Big chains are advertising it"
+	
 -----
 
 ## Composer
@@ -948,6 +965,14 @@ https://hub.docker.com/_/php?tab=description&page=141
 ### faire de la place dans docker
     docker image prune -a --filter "until=2020-01-01"
     docker volume prune
+
+### lancer un elasticsearch dans docker
+    docker network create elastic
+	docker pull docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+	docker run --name es01-test --net elastic -p 127.0.0.1:9200:9200 -p 127.0.0.1:9300:9300 -e "discovery.type=single-node" docker.elastic.co/elasticsearch/elasticsearch:7.17.6
+	curl -XDELETE 'http://localhost:9200/xxxxx'
+	curl -XPUT 'http://localhost:9200/xxxxx?pretty'
+	php bin/console index:elasticsearch
 
 ## Mac Osx
 ### Sauvegarder / restaurer onglet épinglés Firefox
