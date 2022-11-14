@@ -947,6 +947,7 @@ https://hub.docker.com/_/php?tab=description&page=141
 
 ### faire de la place dans docker
     docker image prune -a --filter "until=2020-01-01"
+    docker volume prune
 
 ## Mac Osx
 ### Sauvegarder / restaurer onglet épinglés Firefox
