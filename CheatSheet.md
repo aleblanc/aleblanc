@@ -432,6 +432,12 @@ Exemple d'ajout
 ### composer list outdated packages
 
     composer info -o
+    
+### mise à jour symfony avec composer 
+
+	composer update "symfony/*" --with-all-dependencies
+	composer recipes:update
+	
 
 ### ajouter repo privé dans composer.json
 
