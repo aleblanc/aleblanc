@@ -426,6 +426,12 @@ Exemple d'ajout
 ### composer sans limit de memoire :
 
     COMPOSER_MEMORY_LIMIT=-1 composer require lexik/translation-bundle --no-suggest
+    php73  -d memory_limit=-1 composer.phar install
+    php73  -d memory_limit=-1 /usr/local/bin/composer install
+    
+### composer list outdated packages
+
+    composer info -o
 
 ### ajouter repo privé dans composer.json
 
