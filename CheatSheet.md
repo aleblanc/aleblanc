@@ -1342,3 +1342,18 @@ https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432
 
 Si VELO attribut ROUE, se posser la question : Madame VELO que fait votre ROUE ?
 Classe doit faire une seule chose => SOLID => single responsability
+
+--------
+
+## PHPStorm
+
+### Plugins 
+
+https://www.jetbrains.com/toolbox-app/
+https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-
+https://plugins.jetbrains.com/plugin/7219-symfony-support
+
+### CheatSheet 
+
+https://resources.jetbrains.com/storage/products/phpstorm/docs/PhpStorm_ReferenceCard.pdf
+
