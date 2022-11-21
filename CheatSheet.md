@@ -1086,6 +1086,18 @@ Help -> Edit Custom VM options
     -XX:+HeapDumpOnOutOfMemoryError
     -XX:-OmitStackTraceInFastThrow
 
+#### Plugins 
+
+https://www.jetbrains.com/toolbox-app/
+
+https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-
+
+https://plugins.jetbrains.com/plugin/7219-symfony-support
+
+#### CheatSheet 
+
+https://resources.jetbrains.com/storage/products/phpstorm/docs/PhpStorm_ReferenceCard.pdf
+
 ### alias .bash_profile 
 
 ajout / modification
@@ -1345,15 +1357,4 @@ Classe doit faire une seule chose => SOLID => single responsability
 
 --------
 
-## PHPStorm
-
-### Plugins 
-
-https://www.jetbrains.com/toolbox-app/
-https://plugins.jetbrains.com/plugin/7622-php-inspections-ea-extended-
-https://plugins.jetbrains.com/plugin/7219-symfony-support
-
-### CheatSheet 
-
-https://resources.jetbrains.com/storage/products/phpstorm/docs/PhpStorm_ReferenceCard.pdf
 
