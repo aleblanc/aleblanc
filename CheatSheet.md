@@ -22,7 +22,9 @@ Or use Packagist Security Checker from Github advisory database :
 ### PHP CS 
 
     wget https://cs.symfony.com/download/php-cs-fixer-v3.phar
+    php php-cs-fixer.phar  self-update
     php php-cs-fixer.phar fix -v src/ --config=.php-cs-fixer.php
+    php php-cs-fixer.phar fix -v src/ --rules=@Symfony
     
 
 Configuration .php-cs-fixer.php :
