@@ -402,7 +402,11 @@ Exemple d'ajout
 	nano /etc/logrotate.d/nginx
 	logrotate  /etc/logrotate.d/nginx
 
+### nginx enbale gzip compression
 
+    sudo nano /etc/nginx/nginx.conf
+    #uncomments lines "gzip on" to "gzip_types"
+    
 ### Installer munin
 
 	sudo apt-get install munin munin-node
