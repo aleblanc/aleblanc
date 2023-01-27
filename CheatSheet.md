@@ -1209,6 +1209,10 @@ Scan plage d'IP :
 
     nmap  X.X.X.1-30
     sudo nmap X.X.X.1/255 -sU
+    
+Scan IP sur le reseau local :
+
+    sudo nmap -sP 192.168.0.0/10
 
 ### Outils
 
