@@ -397,6 +397,11 @@ Exemple d'ajout
 	crontab -e
 	49 4 * * * /bin/zcat -f /var/log/nginx/project_access* | /usr/bin/goaccess --ignore-crawlers --log-format=COMBINED --no-global-config --geoip-database=/tmp/GeoLite2-ASN.mmdb --geoip-database=/tmp/GeoLite2-City.mmdb -o /tmp/goaccess_report.html - && chmod 777 /tmp/goaccess_report.html
 
+### configuration logrotate sur nginx
+
+	nano /etc/logrotate.d/nginx
+	logrotate  /etc/logrotate.d/nginx
+
 
 ### Installer munin
 
