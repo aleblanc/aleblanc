@@ -407,6 +407,22 @@ Exemple d'ajout
     sudo nano /etc/nginx/nginx.conf
     #uncomments lines "gzip on" to "gzip_types"
     
+### augmenter performance de PHP : definir valeur de la pool de php-fpm
+
+	ps -ylC php-fpm8.1 --sort:rss
+	ps -ylC php-fpm7.4 --sort:rss
+	sudo nano /etc/php/8.1/fpm/pool.d/www.conf
+	sudo nano /etc/php/7.4/fpm/pool.d/www.conf
+
+	pm.max_children = 40 # RAM / RSS column
+	pm.start_servers = 15
+	pm.min_spare_servers = 15
+	pm.max_spare_servers = 25
+	pm.max_requests = 500
+
+	sudo service php8.1-fpm restart
+	sudo service php7.4-fpm restart
+
 ### Installer munin
 
 	sudo apt-get install munin munin-node
