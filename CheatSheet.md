@@ -931,6 +931,16 @@ lib/ezc/Archive/src/entry.php
 	pg_dump -U user -h localhost  -Fc database > database.sql
 	pg_restore -d database  -U user -h localhost -v -c  database.sql
 	
+### Install last version of Sqlite dans PHP avec SQLITE_ENABLE_MATH_FUNCTIONS (les fonctions de mathématiques)
+
+	wget https://www.sqlite.org/2022/sqlite-amalgamation-3400100.zip
+	unzip sqlite-amalgamation-3400100.zip
+	cd sqlite-amalgamation-3400100/
+	gcc -Wl,-soname,libsqlite3.so.0 -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_DISABLE_DIRSYNC -DSQLITE_ENABLE_COLUMN_METADATA -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_JSON1 -DSQLITE_ENABLE_UNLOCK_NOTIFY -DSQLITE_SECURE_DELETE -DSQLITE_TEMP_STORE=1 -DSQLITE_DTHREADSAFE=1 -shared -o libsqlite3.so -fPIC sqlite3.c
+	sudo service php7.4-fpm stop
+	sudo mv /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6 /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6.old
+	sudo mv libsqlite3.so /usr/lib/x86_64-linux-gnu/libsqlite3.so.0.8.6
+	sudo service php7.4-fpm start
 
 ------
 
