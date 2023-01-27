@@ -929,6 +929,17 @@ lib/ezc/Archive/src/entry.php
     mysql -u user -p --default-character-set=utf8 --max_allowed_packet=64M mabase < ~/mabase.sql
 ``` 
 
+### Installer mariadb et désactiver le strict mode
+
+	curl -fsSL https://mariadb.org/mariadb_release_signing_key.asc | sudo gpg --dearmor -o /usr/share/keyrings/mariadb-keyring.gpg
+	echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/mariadb-keyring.gpg] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.6/debian bullseye main' | sudo tee /etc/apt/sources.list.d/mariadb.list
+	sudo apt update
+	sudo apt install -y mariadb-server mariadb-client
+	sudo mysql_secure_installation
+
+	nano /etc/mysql/my.cnf
+	[mysqld]
+	sql_mode=NO_ENGINE_SUBSTITUTION
 
 ### PostgreSQL : Installer et configuration de Symfony
 
