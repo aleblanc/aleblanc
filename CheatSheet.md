@@ -235,7 +235,8 @@ composer des images et les rendres transparentes :
     svn mkdir svn+ssh://USER@IP_SERVEUR/site/trunk
     svn checkout svn+ssh://USER@IP_SERVEUR/site/trunk
 
-###TAR evec exclude
+### TAR evec exclude
+
     tar -cvzpf backup.tgz ./folder --exclude folder/excludeme --exclude folder/excludeme2
 
 ### process
@@ -383,8 +384,19 @@ Exemple d'ajout
 	sudo apt-get install build-essential
 	sudo apt-get install libgeoip-dev
 	sudo apt-get install libncursesw5-dev libglib2.0-dev libgeoip-dev libtokyocabinet-dev
-	sudo nano /usr/local/etc/goaccess.conf
-	goaccess /var/www/site/logs/httpd-access.log -c -o /var/www/site/html/goaccess_report.html --real-time-html
+	sudo apt install lsb-release
+	wget -O - https://deb.goaccess.io/gnugpg.key | gpg --dearmor | sudo tee /usr/share/keyrings/goaccess.gpg >/dev/null
+	echo "deb [signed-by=/usr/share/keyrings/goaccess.gpg arch=$(dpkg --print-architecture)] https://deb.goaccess.io/ $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/goaccess.list
+	sudo apt-get update
+	sudo apt-get install goaccess
+	sudo apt install goaccess
+	sudo su 
+	cd /tmp
+	wget https://git.io/GeoLite2-City.mmdb
+	wget  https://git.io/GeoLite2-ASN.mmdb
+	crontab -e
+	49 4 * * * /bin/zcat -f /var/log/nginx/project_access* | /usr/bin/goaccess --ignore-crawlers --log-format=COMBINED --no-global-config --geoip-database=/tmp/GeoLite2-ASN.mmdb --geoip-database=/tmp/GeoLite2-City.mmdb -o /tmp/goaccess_report.html - && chmod 777 /tmp/goaccess_report.html
+
 
 ### Installer munin
 
