@@ -1033,9 +1033,17 @@ UI :
     ],
 ### docker lancé alpine en mode interactif
     docker run --name=container-alpine -it alpine ash
+    
+### connexion au container php 
+	docker-compose exec php ash
+	docker-compose exec php bash
 
 ### liste tous les container dejà lancé
     docker ps -a
+    
+### stop all process
+
+    docker container stop $(docker ps -q
 
 ### run and rm direct
     docker run --name=container-halloween -it --rm docker/doodle:halloween
