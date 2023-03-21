@@ -3,6 +3,23 @@
 
 -----
 
+## API Plaform
+
+### Générer les clef pour JWT 
+
+	openssl genrsa -out config/jwt/private.pem -aes256 4096
+	openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem
+ ou 
+ 
+	 php bin/console lexik:jwt:generate-keypair
+
+### Générer les secrets pour JWT 
+
+	php bin/console secrets:generate-keys
+	php bin/console secrets:set JWT_PASSPHRASE
+	php bin/console secrets:set JWT_SECRET_KEY config/jwt/private.pem
+	php bin/console secrets:set JWT_PUBLIC_KEY config/jwt/public.pem
+
 ## Symfony
 
 ### Security checker 
