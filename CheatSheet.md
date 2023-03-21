@@ -3,7 +3,7 @@
 
 -----
 
-## API Plaform
+## API Platform
 
 ### Générer les clef pour JWT 
 
