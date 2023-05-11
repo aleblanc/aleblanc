@@ -1,15 +1,24 @@
 
-[CheatSheet-Symfony-ApiPlatform-Doctrine](CheatSheet-Symfony-ApiP latform-Doctrine.md)
-[CheatSheet-Unix-Composer-Git.md](CheatSheet-Unix-Composer-Git.md)
-[CheatSheet-MySql-PostgreSQL-SQLite.md](CheatSheet-MySql-PostgreSQL-SQLite.md)
+[Symfony-ApiPlatform-Doctrine](CheatSheet-Symfony-ApiP latform-Doctrine.md)
 -------
-[CheatSheet-Securite-Outils.md](CheatSheet-Securite-Outils.md)
+
+[Unix-Composer-Git](CheatSheet-Unix-Composer-Git.md)
 -------
-[CheatSheet-Docker-Vagrant.md](CheatSheet-Docker-Vagrant.md)
+
+[MySql-PostgreSQL-SQLite](CheatSheet-MySql-PostgreSQL-SQLite.md)
 -------
-[CheatSheet-Brew-MacOsx-Phpstorm](CheatSheet-Brew-MacOsx-Phpstorm.md)
+
+[Securite-Outils](CheatSheet-Securite-Outils.md)
 -------
-[CheatSheet-eZ-zeta-Solr.md](CheatSheet-eZ-zeta-Solr.md)
+
+[Docker-Vagrant](CheatSheet-Docker-Vagrant.md)
+-------
+
+[Brew-MacOsx-Phpstorm](CheatSheet-Brew-MacOsx-Phpstorm.md)
+-------
+
+[eZ-zeta-Solr](CheatSheet-eZ-zeta-Solr.md)
+-------
 
 ## VueJS
 
