@@ -1,5 +1,5 @@
 
-[Symfony-ApiPlatform-Doctrine](CheatSheet-Symfony-ApiP latform-Doctrine.md)
+[Symfony-ApiPlatform-Doctrine](CheatSheet-Symfony-ApiPlatform-Doctrine.md)
 -------
 
 [Unix-Composer-Git](CheatSheet-Unix-Composer-Git.md)
