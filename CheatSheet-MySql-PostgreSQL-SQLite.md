@@ -100,8 +100,8 @@
 
 ### Dump / import PostgreSQL
 
-	pg_dump -U user -h localhost  -Fc database > database.sql
-	pg_restore -d database  -U user -h localhost -v -c  database.sql
+	pg_dump -U user -h localhost --no-owner --no-privileges -Fc database > database.sql
+	pg_restore -d database  -U user -h localhost -v --no-owner --role=USERNAME -c  database.sql
 
 ### Install last version of Sqlite dans PHP avec SQLITE_ENABLE_MATH_FUNCTIONS (les fonctions de mathématiques)
 
