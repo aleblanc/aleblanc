@@ -60,6 +60,9 @@ return $config;
     curl -s https://getcomposer.org/installer | php
     php composer.phar create-project symfony/skeleton:"^5.4"  symfony-project -s dev
 
+### Lister tous les paramètres possibles 
+
+    php bin/console debug:container --parameters
 
 ### Extract / update translations
 
