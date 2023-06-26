@@ -119,3 +119,25 @@ merge lexik translations
     	}
 	//station ids : ftp://ftp.ncdc.noaa.gov/pub/data/ghcn/daily/ghcnd-stations.txt
 ```
+#### corriger les fuite de memoire dans doctrine (leaks of memory) 
+
+``` php
+if ($counter > 5000) {
+    $memUse = round(memory_get_usage() / 1000000, 2).'MB';
+    $this->output->writeln('Processed  (mem: '.$memUse.')');
+    $output->writeln('FLUSH '.$counterTotal.' '.date('Ymd H:i:s'));
+    $this->entityManager->flush();
+    $this->entityManager->clear();
+    $this->entityManager->clear(MY_ENTITY::class); // Detach all MyEntity from Doctrine.
+    $counter = 0;
+    $memUse = round(memory_get_usage() / 1000000, 2).'MB';
+    $this->output->writeln('Processed  (mem: '.$memUse.')');
+}
+```
+
+NB : et ajouter --no-debug à la commande
+
+
+
+
+
