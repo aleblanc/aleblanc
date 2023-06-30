@@ -37,6 +37,7 @@
 ```
 	sudo nano /etc/apt/sources.list
 	sudo nano /etc/apt/sources.list.d/*.list
+	screen -R upgrade
 	sudo apt-get update -y
 	sudo apt upgrade --without-new-pkgs
 	sudo apt-get full-upgrade
