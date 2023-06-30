@@ -1,6 +1,68 @@
 
 ## UNIX
 
+### Upgrade Debian bullseye vers bookworm
+
+1. backup db / configuration nginx / snapshot system
+2. Trouver l'UUID et Désactiver FSCK (sinon donwtime de 2h possible)
+
+	sudo blkid
+	sudo nano /etc/fstab
+	UUID=1234456-1234-1234-1234-123456789 /dev/sda2          ext4    defaults        0       0
+
+
+3. Update bulleye
+
+	screen -R upgrade
+	sudo service cron stop
+	sudo service nginx stop
+	sudo service php8.2-fpm stop
+	sudo service postgresql stop
+	sudo systemctl stop elasticsearch
+	sudo service cron status
+	sudo service nginx status
+	sudo service php8.2-fpm status
+	sudo service postgresql status
+	sudo systemctl status elasticsearch
+	sudo apt-get update -y
+	sudo apt-get upgrade
+	sudo apt-get dist-upgrade
+	sudo apt-get autoremove
+	sudo apt-get clean
+	sudo reboot
+	lsb_release -a
+
+4. Remplacer bullseye par bookworm dans
+   
+	sudo nano /etc/apt/sources.list
+	sudo nano /etc/apt/sources.list.d/*.list
+	sudo apt-get update -y
+	sudo apt upgrade --without-new-pkgs
+	sudo apt-get full-upgrade
+	sudo apt --purge autoremove
+	sudo reboot
+	lsb_release -a
+
+### installer php 8.2 en une ligne 
+
+	sudo apt-get install php8.2-{common,cli,fpm,intl,bcmath,mbstring,curl,xsl,pdo-sqlite,gd,zip,pgsql}
+ 
+### CURL proxy / vpn gratuit avec opera-proxy et hola-proxy
+
+	wget https://github.com/Snawoot/opera-proxy/releases/download/v1.2.4/opera-proxy.darwin-amd64
+	chmod +x opera-proxy.darwin-amd64
+	./opera-proxy.darwin-amd64 -list-countries
+	./opera-proxy.darwin-amd64 -country AS -list-proxies
+	curl --proxy "https://BE2EF901005F08F420B54AD3BA13CB955245A1A3:eyJhbGciOiJFQ0RILUVTK0EyNTZLVyIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJlcGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJvU2FBbXphcWl2QXdfMzRjQkp5SGktbFZfTmZrc3BGV2NDaUVqM0hFOFZFIiwieSI6InZLUDdQYklGODViSWo4S0QxajRpU3ZXbmh1X3RXUGxzX3BkeDExRkVBTXMifX0.WFKr7hUyjcERZ5UnBArUHyZY7Pg5wL5QhoAJ9Dul9PU8mcZYeq8pkA.udpIoWC5kEGVRXd9.0evqWSBxgy7_90RjKKKn-ieZHbrFESbXEa825pKH1RthCrNvq4yFYaNAtqhA0oVhf8JQXbfw_jdD7-ouw_9M4j0GMTWB9NrNZTtXo1PTT2nqND3BgcoZwe40eJUfWNrz8YmnudEVrpnND_zYdnTGW23nfFxGYJhiYYJMJAQBPTfK3GCXGQUX8wuZ8PeXKgGLkFshk1Z0jPtuC79mFZt_fLwTuJyBmF_E_6joDMwFGhtHSbBeQ50QkJt5wadstpqJe50hpLhVDRCWc_tVshnkCJSym5Q_fc5ZML8fv6q9Z4YtfEFsk5VxZQZnV0VF308Zt0gMuEL9ENgdgy3f-MywvcjBZGLFJ8vA8r5-7v4EyipjQmMtudTBQa5Iz-K80G5np3CNbmyEk7sE97q7uJzKxZvzpHiLd5aY_CxRiS8YfchjCxQ5esW3COBZI9g_gTviOEQJFXCOMw.Ne1xm_5-O15pldC59mZWkA@as0.sec-tunnel.com" --resolve as0.sec-tunnel.com:443:77.111.245.10  https://ifconfig.me ; echo
+
+
+	wget https://github.com/Snawoot/hola-proxy/releases/download/v1.9.1/hola-proxy.darwin-amd64
+	chmod +x hola-proxy.darwin-amd64
+	./hola-proxy.darwin-amd64  -list-countries
+	./hola-proxy.darwin-amd64 -country nz -list-proxies -limit 3
+	curl --proxy "https://A9E7BD218E02D185400A7E4A7E03EDA27DFDD8F2:eyJhbGciOiJFQ0RILUVTK0EyNTZLVyIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJlcGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBVDRPVkcxRk4zUXUwaFdTSmctekRXNE9janBMNmpRVHZDYmJ5T29yTkJVIiwieSI6IkdmSEc3ZUoxendPWkV3N19vLXNZOVNkYVExbjh3b1ZnRXdmalc1cEI3T3MifX0.an50gYWYlkCLG1I1RZYg5hFHKIIpxnlP2cxX7xH2WVNE6wZXaP9WFA._CSr3vVu2urkGXeq.sap13--T1peY0cz-AejkHUmKqt5GfuZ9QoCfd0-yYDssXRdyY_B4ITeEgPgr1gqv4p8fzgMn6xsfBDKvGhTnOdApnNWAR7dt1o6bhQnOJuFkeZxccqwI2uMsoZfV72CnuDPVBPAbxaPfiu_fnfu4WD1ry0EHlRlV9ukXjTiyetUaHwsOVBDdwh7dE8Pm2J8BwL2myQ_9G0aJ3TqsAwxzkhtDvqpZKdbIskh7ISj8vHbzmi4spZ_-hqWN8PfTj7KPXubwIlEbhCMTL68OUWkZZR8aS6noQCnlhwC6nsXYxUyoTIdvO3PEg3rjX2KfAR9e_Bi0-nMD_wYx74swhTIyxZ-qveyz4txnBeVK-L1G4aS9e_yfGDh9-DzmbrFjo95k_tX1Wj2H5_kzsIeVKx96vPRvqwZdQDOgF3m-DXHYMNLW4efsJlRKidPlKI7j7AcQ6UxOXYonmg.WPDmsBRiw-bUbwrcSNJLuw@as0.sec-tunnel.com"  --resolve as0.sec-tunnel.com:443:77.111.245.14  https://ifconfig.me ; echo
+
+
 ### Téléchargement des IP par pays et filtrage des IP française
 
 	/usr/bin/wget  "https://download.ip2location.com/lite/IP2LOCATION-LITE-DB1.CSV.ZIP" -O /tmp/IP2LOCATION-LITE-DB1.CSV.ZIP && cd /tmp/ && /usr/bin/unzip -o /tmp/IP2LOCATION-LITE-DB1.CSV.ZIP && less /tmp/IP2LOCATION-LITE-DB1.CSV | grep 'FR' > /tmp/geofr.csv
