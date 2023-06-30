@@ -6,13 +6,14 @@
 1. backup db / configuration nginx / snapshot system
 2. Trouver l'UUID et Désactiver FSCK (sinon donwtime de 2h possible)
 
+```
 	sudo blkid
 	sudo nano /etc/fstab
 	UUID=1234456-1234-1234-1234-123456789 /dev/sda2          ext4    defaults        0       0
+```
 
-
-3. Update bulleye
-
+4. Update bulleye
+```
 	screen -R upgrade
 	sudo service cron stop
 	sudo service nginx stop
@@ -31,9 +32,9 @@
 	sudo apt-get clean
 	sudo reboot
 	lsb_release -a
-
-4. Remplacer bullseye par bookworm dans
-   
+```
+5. Remplacer bullseye par bookworm dans
+```
 	sudo nano /etc/apt/sources.list
 	sudo nano /etc/apt/sources.list.d/*.list
 	sudo apt-get update -y
@@ -42,7 +43,7 @@
 	sudo apt --purge autoremove
 	sudo reboot
 	lsb_release -a
-
+```
 ### installer php 8.2 en une ligne 
 
 	sudo apt-get install php8.2-{common,cli,fpm,intl,bcmath,mbstring,curl,xsl,pdo-sqlite,gd,zip,pgsql}
