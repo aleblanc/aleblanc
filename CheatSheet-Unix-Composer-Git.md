@@ -62,7 +62,7 @@
 	chmod +x hola-proxy.darwin-amd64
 	./hola-proxy.darwin-amd64  -list-countries
 	./hola-proxy.darwin-amd64 -country nz -list-proxies -limit 3
-	curl --proxy "https://A9E7BD218E02D185400A7E4A7E03EDA27DFDD8F2:eyJhbGciOiJFQ0RILUVTK0EyNTZLVyIsImN0eSI6IkpXVCIsImVuYyI6IkEyNTZHQ00iLCJlcGsiOnsia3R5IjoiRUMiLCJjcnYiOiJQLTI1NiIsIngiOiJBVDRPVkcxRk4zUXUwaFdTSmctekRXNE9janBMNmpRVHZDYmJ5T29yTkJVIiwieSI6IkdmSEc3ZUoxendPWkV3N19vLXNZOVNkYVExbjh3b1ZnRXdmalc1cEI3T3MifX0.an50gYWYlkCLG1I1RZYg5hFHKIIpxnlP2cxX7xH2WVNE6wZXaP9WFA._CSr3vVu2urkGXeq.sap13--T1peY0cz-AejkHUmKqt5GfuZ9QoCfd0-yYDssXRdyY_B4ITeEgPgr1gqv4p8fzgMn6xsfBDKvGhTnOdApnNWAR7dt1o6bhQnOJuFkeZxccqwI2uMsoZfV72CnuDPVBPAbxaPfiu_fnfu4WD1ry0EHlRlV9ukXjTiyetUaHwsOVBDdwh7dE8Pm2J8BwL2myQ_9G0aJ3TqsAwxzkhtDvqpZKdbIskh7ISj8vHbzmi4spZ_-hqWN8PfTj7KPXubwIlEbhCMTL68OUWkZZR8aS6noQCnlhwC6nsXYxUyoTIdvO3PEg3rjX2KfAR9e_Bi0-nMD_wYx74swhTIyxZ-qveyz4txnBeVK-L1G4aS9e_yfGDh9-DzmbrFjo95k_tX1Wj2H5_kzsIeVKx96vPRvqwZdQDOgF3m-DXHYMNLW4efsJlRKidPlKI7j7AcQ6UxOXYonmg.WPDmsBRiw-bUbwrcSNJLuw@as0.sec-tunnel.com"  --resolve as0.sec-tunnel.com:443:77.111.245.14  https://ifconfig.me ; echo
+	curl --proxy https://user-uuid-6687622bcdaf4efeab663be406dd18eb:6ae8a179cd33@zagent2645.hola.org:22222 https://ifconfig.me ; echo
 
 
 ### Téléchargement des IP par pays et filtrage des IP française
