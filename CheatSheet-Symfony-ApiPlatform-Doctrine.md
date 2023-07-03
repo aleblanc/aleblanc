@@ -32,6 +32,23 @@ Or use Packagist Security Checker from Github advisory database :
     php vendor/aleblanc/security-checker/security-checker security:check
 
 
+### PHP Rector 
+
+	php composer.phar require rector/rector --dev
+	vendor/bin/rector process src --dry-run
+
+exemple de règles dans rector.php : 
+
+    $rectorConfig->sets([
+        \Rector\Set\ValueObject\SetList::DEAD_CODE,
+        \Rector\Doctrine\Set\DoctrineSetList::ANNOTATIONS_TO_ATTRIBUTES,
+        LevelSetList::UP_TO_PHP_82,
+        \Rector\Symfony\Set\SymfonySetList::SYMFONY_63,
+        \Rector\Symfony\Set\SymfonySetList::ANNOTATIONS_TO_ATTRIBUTES,
+        \Rector\Symfony\Set\SymfonySetList::SYMFONY_CODE_QUALITY,
+        \Rector\Symfony\Set\SymfonySetList::SYMFONY_CONSTRUCTOR_INJECTION,
+    ]);
+
 ### PHP CS
 
     wget https://cs.symfony.com/download/php-cs-fixer-v3.phar
