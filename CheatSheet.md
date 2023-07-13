@@ -32,3 +32,9 @@
     python3 send.py  5393
 
 -------
+
+
+## Performance tunning
+Symfony[https://symfony.com/doc/current/performance.html]
+
+-------
