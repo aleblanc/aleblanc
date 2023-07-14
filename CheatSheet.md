@@ -62,7 +62,7 @@ PostgreSQL[https://bun.uptrace.dev/postgres/performance-tuning.html#work-mem]
 Nginx 
 
     sudo nano /etc/nginx/nginx.conf
-    worker_processes 4;
+    worker_processes 4; #numbers of CPU
     ...
     events {
         worker_connections 1024;
