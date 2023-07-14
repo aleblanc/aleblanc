@@ -79,10 +79,10 @@ Nginx
         gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
     }
 
-    sudo nano /etc/nginx/sites-available/mnews 
+    sudo nano /etc/nginx/sites-available/default 
     ...
     location ~ ^/index\.php(/|$) {
-        fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
 
