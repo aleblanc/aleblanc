@@ -59,6 +59,9 @@ PostgreSQL[https://bun.uptrace.dev/postgres/performance-tuning.html#work-mem]
     work_mem = 153MB                                # min 64kB
     maintenance_work_mem = 765MB            # min 1MB
 
+MariaDB[https://mariadb.com/kb/en/configuring-mariadb-for-optimal-performance/]
+
+
 Nginx 
 
     sudo nano /etc/nginx/nginx.conf
