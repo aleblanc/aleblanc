@@ -474,27 +474,30 @@ service nginx configtest && service nginx reload
 
 ### ajouter repo privé dans composer.json
 
-faire les modification de composer.json à la main::
+forker un repo symfony5 pour le rendre compatible Symfony6 , faire les modification de composer.json à la main::
 
 ``` json
 	"repositories": [
-	  {
-		"type": "package",
-		"package": {
-		  "name": "folder/repo",
-		  "version": "1.1",
-		  "type": "package",
-		  "source": {
-			"url": "git@github.com:Folder/Repo.git",
-			"type": "git",
-			"reference": "master"
-		  }
-		}
-	  }
+	        {
+	            "type": "package",
+	            "package": {
+	                "name": "bomo/ical-bundle",
+	                "version": "dev-master",
+	                "autoload": {
+	                    "psr-4": { "BOMO\\IcalBundle\\": "" }
+	                },
+	                "type": "package",
+	                "source": {
+	                    "url": "https://github.com/aleblanc/IcalBundle.git",
+	                    "type": "git",
+	                    "reference": "master"
+	                }
+	            }
+	        }
 	],
-	
+	...
 	,
-	"folder/repo": "*"
+	"bomo/ical-bundle": "dev-master"
 
 ```
 
