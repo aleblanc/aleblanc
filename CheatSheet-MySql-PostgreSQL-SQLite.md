@@ -103,6 +103,43 @@
 	pg_dump -U user -h localhost --no-owner --no-privileges -Fc database > database.sql
 	pg_restore -d database  -U user -h localhost -v --no-owner --role=USERNAME -c  database.sql
 
+ 
+### Upgrade Postgres 11 to Postgres 15
+
+	screen -R upgrade
+	#dump
+ 	pg_dump -U user -h localhost -Z0 -j 3 -Fd database -f backupdir
+	#stop / pg_upgrade
+	sudo service cron stop
+	sudo service postgresql@11-main stop
+	sudo -iu postgres /usr/lib/postgresql/15/bin/pg_upgrade -o "-c config_file=/etc/postgresql/11/main/postgresql.conf" --old-datadir=/var/lib/postgresql/11/main/   -O "-c config_file=/etc/postgresql/15/main/postgresql.conf"  --new-datadir=/var/lib/postgresql/15/main/ --old-bindir=/usr/lib/postgresql/11/bin --new-bindir=/usr/lib/postgresql/15/bin --check
+	sudo -iu postgres /usr/lib/postgresql/15/bin/pg_upgrade -o "-c config_file=/etc/postgresql/11/main/postgresql.conf" --old-datadir=/var/lib/postgresql/11/main/   -O "-c config_file=/etc/postgresql/15/main/postgresql.conf"  --new-datadir=/var/lib/postgresql/15/main/ --old-bindir=/usr/lib/postgresql/11/bin --new-bindir=/usr/lib/postgresql/15/bin
+	
+	#swap port number
+	sudo nano /etc/postgresql/11/main/postgresql.con
+	sudo nano /etc/postgresql/15/main/postgresql.con
+
+	sudo service postgresql@15-main start
+	sudo su - postgres
+	psql -c "SELECT version();"
+	/usr/lib/postgresql/15/bin/vacuumdb --all --analyze-in-stages
+
+	psql
+	CREATE ROLE user LOGIN PASSWORD 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX';
+	ALTER DATABASE database OWNER TO user;
+	GRANT ALL PRIVILEGES ON DATABASE database TO user;
+ 	ALTER ROLE user WITH SUPERUSER;
+
+	#clear old datas
+  	sudo apt list --installed | grep postgresql
+	sudo apt-get remove postgresql-11 postgresql-client-11
+	sudo apt-get remove postgresql-13 postgresql-client-13
+	sudo su - postgres
+	./delete_old_cluster.sh
+	
+	sudo service cron start
+
+
 ### Install last version of Sqlite dans PHP avec SQLITE_ENABLE_MATH_FUNCTIONS (les fonctions de mathématiques)
 
 	wget https://www.sqlite.org/2022/sqlite-amalgamation-3400100.zip
