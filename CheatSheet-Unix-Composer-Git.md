@@ -531,6 +531,13 @@ forker un repo symfony5 pour le rendre compatible Symfony6 , faire les modificat
     git branch -D master
     git checkout master
 
+### erreur sparse checkout 
+
+    git sparse-checkout disable 
+
+### reset de merge et de commit 
+
+    git reset --hard origin/staging
 
 ### create tag
 
