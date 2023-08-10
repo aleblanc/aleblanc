@@ -179,9 +179,8 @@ https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432
 
 ### Outils d’analyse de site Internet complets
 
-1. Alexa (site ranking) :
-   https://www.alexa.com/siteinfo/xxx.x
-   https://www.alexa.com/minisiteinfo/xxx.x?offset=5&version=alxg_20100607
+1. Hypestat :
+   https://hypestat.com/info/xxx.x
 
 2. Site indices la valeur
    https://xxx.x.siteindices.com/
