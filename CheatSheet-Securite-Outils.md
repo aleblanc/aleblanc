@@ -200,9 +200,8 @@ https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432
 
 ### Outils de tests d’amélioration de site Internet / SEO
 
-1. Lighthouse rapport complet :
-   https://lighthouse-ci.appspot.com/try
-   https://lighthouse-dot-webdotdevsite.appspot.com/lh/html?url=http://www.xxx.x/
+1. Webpagetest / Performance / core vital / Lighthouse :
+   https://www.webpagetest.org/
 
 2. Google PageSpeed Insights :
    https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwww.xxx.x&tab=mobile
