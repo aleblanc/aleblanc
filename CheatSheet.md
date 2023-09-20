@@ -62,14 +62,22 @@ PostgreSQL[https://bun.uptrace.dev/postgres/performance-tuning.html#work-mem]
 MariaDB[https://mariadb.com/kb/en/configuring-mariadb-for-optimal-performance/]
 
 
-Nginx 
+Nginx + fastcgi cache + geoip  https://gist.github.com/vedmant/524a3bb179cb22fe0c8dbe615f463589
 
+    sudo apt install libnginx-mod-http-geoip2
+    wget https://git.io/GeoLite2-Country.mmdb
     sudo nano /etc/nginx/nginx.conf
+    
+    worker_rlimit_nofile 30000; #tune max open same time
     worker_processes 4; #numbers of CPU
     ...
     events {
-        worker_connections 1024;
+        worker_connections 2048;
         #multi_accept on;
+        ...
+        geoip2 /home/root/GeoLite2-Country.mmdb {
+              $geoip2_data_country_iso_code country iso_code;
+        }
         ...
         #uncomments lines "gzip on" to "gzip_types"
         gzip on;
@@ -83,8 +91,26 @@ Nginx
     }
 
     sudo nano /etc/nginx/sites-available/default 
+    fastcgi_cache_path /tmp/fcgicache levels=1:2 keys_zone=project_fcgicache:500m inactive=120m max_size=50G use_temp_path=off;
+    
+    server {
+    ...
+    set $skip_cache 0;
+    # POST requests should always go to PHP
+    if ($request_method = POST) {
+        set $skip_cache 1;
+    }
     ...
     location ~ ^/index\.php(/|$) {
+    
+        #add fastcgi cache
+        fastcgi_cache project_fcgicache;
+        fastcgi_cache_bypass $skip_cache;
+        fastcgi_no_cache $skip_cache;
+        fastcgi_cache_key "$scheme$request_method$host$request_uri$args$geoip2_data_country_iso_code";
+        fastcgi_cache_valid 200 60m;
+        fastcgi_ignore_headers Cache-Control Expires Set-Cookie Vary;
+        
         fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
         fastcgi_split_path_info ^(.+\.php)(/.*)$;
         include fastcgi_params;
@@ -110,5 +136,10 @@ Nginx
         add_header Cache-Control "max-age=31536000, public";
     }
     ...
+
+    sudo nano /etc/security/limits.conf
+    www-data soft nofile 5000
+    www-data hard nofile 5000
+    sudo sysctl -p
 
 -------
