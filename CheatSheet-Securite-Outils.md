@@ -23,6 +23,11 @@ For IPv6:
 ### liste toutes les ips
     arp -a
 
+### test de charge avec ab "ApacheBench"
+
+	sudo apt-get install apache2-utils
+	ab -n 20000 -c 2500 https://www.exemple.com
+
 ### Nmap
 
 Scan + scan des ports :
