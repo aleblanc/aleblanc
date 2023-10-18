@@ -145,6 +145,13 @@ composer des images et les rendres transparentes :
 
     convert -size 826x600 xc:none -page +55+96 capture.png -page +0+0 layer.png -background none -layers flatten mon_image3.png
 
+### rename retrait des caracères non aplhanumériques
+
+	rename -n 's/[^A-Za-z0-9]/./g' *
+ 
+### convertir une playlist et la convertir en mp3
+	
+	yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist
 
 ### find a file
     find . -name "file.tpl"
