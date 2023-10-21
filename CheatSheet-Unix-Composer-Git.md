@@ -151,8 +151,12 @@ composer des images et les rendres transparentes :
  
 ### convertir une playlist et la convertir en mp3
 	
-	yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist
+	yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output "%(title)s.%(ext)s" --yes-playlist LINK_URL
 
+### combiner un format audio et video
+
+	yt-dlp -f "hls-audio-AAC_und_ch2_128kbps+hls-1675" LINK_URL
+ 
 ### find a file
     find . -name "file.tpl"
 
