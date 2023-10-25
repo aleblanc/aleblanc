@@ -250,6 +250,10 @@ reprise de telechargement limité a 1000kb :
 ### Supprimer les fichier de plus de 365 jours
 
     find . -type f  -mtime +365 -delete
+    
+### trouver les fichiers et dossiers volumineux sur un serveur
+
+    cd / && sudo du -xh | grep '^\S*[0-9\.]\+G' | sort -rn
 
 ### UNIX SUDO OTHER USER
 
