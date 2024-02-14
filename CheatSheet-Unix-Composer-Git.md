@@ -434,8 +434,101 @@ service nginx configtest && service nginx reload
 ### Installer munin
 
 	sudo apt-get install munin munin-node
+	sudo apt-get install -y libwww-perl libcache-cache-perl  libdbd-mysql-perl  libjson-perl  libdbd-pg-perl
 	cd /var/www/site/html/
 	sudo ln -s /var/cache/munin/www/ munin
+ 
+	cd /usr/share/munin/plugins
+	sudo git clone https://github.com/tjstein/php5-fpm-munin-plugins.git
+	sudo chmod +x php5-fpm-munin-plugins/phpfpm_*
+	sudo -s
+	ln -s /usr/share/munin/plugins/php5-fpm-munin-plugins/phpfpm_average /etc/munin/plugins/phpfpm_average
+	ln -s /usr/share/munin/plugins/php5-fpm-munin-plugins/phpfpm_connections /etc/munin/plugins/phpfpm_connections
+	ln -s /usr/share/munin/plugins/php5-fpm-munin-plugins/phpfpm_memory /etc/munin/plugins/phpfpm_memory
+	ln -s /usr/share/munin/plugins/php5-fpm-munin-plugins/phpfpm_status /etc/munin/plugins/phpfpm_status
+	ln -s /usr/share/munin/plugins/php5-fpm-munin-plugins/phpfpm_processes /etc/munin/plugins/phpfpm_processes
+	service munin-node restart
+
+	ln -s /usr/share/munin/plugins/nginx_request /etc/munin/plugins/nginx_request
+	ln -s /usr/share/munin/plugins/nginx_status /etc/munin/plugins/nginx_status
+	service munin-node restart
+
+	ln -s /usr/share/munin/plugins/mysql_       /etc/munin/plugins/mysql_
+	ln -s /usr/share/munin/plugins/mysql_innodb       /etc/munin/plugins/mysql_innodb
+	ln -s /usr/share/munin/plugins/mysql_queries      /etc/munin/plugins/mysql_queries
+	ln -s /usr/share/munin/plugins/mysql_threads /etc/munin/plugins/mysql_threads
+	ln -s /usr/share/munin/plugins/mysql_bytes  /etc/munin/plugins/mysql_bytes
+	ln -s /usr/share/munin/plugins/mysql_isam_space_  /etc/munin/plugins/mysql_isam_space_
+	ln -s /usr/share/munin/plugins/mysql_slowqueries  /etc/munin/plugins/mysql_slowqueries
+	mv /etc/munin/plugins/mysql_ /etc/munin/plugins/mysql_connections
+	service munin-node restart
+
+	# https://wiki.evolix.org/HowtoMunin
+	ln -s /usr/share/munin/plugins/postgres_autovacuum      /etc/munin/plugins/postgres_autovacuum
+	ln -s /usr/share/munin/plugins/postgres_bgwriter      /etc/munin/plugins/postgres_bgwriter
+	ln -s /usr/share/munin/plugins/postgres_connections_db /etc/munin/plugins/
+	ln -s /usr/share/munin/plugins/postgres_checkpoints /etc/munin/plugins/
+	ln -s /usr/share/munin/plugins/postgres_users /etc/munin/plugins/
+	ln -s /usr/share/munin/plugins/postgres_xlog /etc/munin/plugins/
+	ln -s /usr/share/munin/plugins/postgres_cache_ /etc/munin/plugins/postgres_cache_ALL
+	ln -s /usr/share/munin/plugins/postgres_connections_ /etc/munin/plugins/postgres_connections_ALL
+	ln -s /usr/share/munin/plugins/postgres_locks_ /etc/munin/plugins/postgres_locks_ALL
+	ln -s /usr/share/munin/plugins/postgres_querylength_ /etc/munin/plugins/postgres_querylength_ALL
+	ln -s /usr/share/munin/plugins/postgres_size_ /etc/munin/plugins/postgres_size_ALL
+	ln -s /usr/share/munin/plugins/postgres_transactions_ /etc/munin/plugins/postgres_transactions_ALL
+	ln -s /usr/share/munin/plugins/postgres_scans_ /etc/munin/plugins/postgres_scans_DBNAME
+	ln -s /usr/share/munin/plugins/postgres_tuples_ /etc/munin/plugins/postgres_tuples_DBNAME
+	service munin-node restart
+
+	#https://github.com/kunitake/munin-plugin-elasticsearch/blob/master/elasticsearch_docs
+	cd /usr/share/munin/plugins
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_open_files
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_jvm_memory
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_cluster_shards
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_index_size
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_index_total
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_docs
+	wget https://raw.githubusercontent.com/kunitake/munin-plugin-elasticsearch/master/elasticsearch_cache
+	chmod +x elasticsearch_*
+	ln -s /usr/share/munin/plugins/elasticsearch_open_files /etc/munin/plugins/elasticsearch_open_files
+	ln -s /usr/share/munin/plugins/elasticsearch_jvm_memory /etc/munin/plugins/elasticsearch_jvm_memory
+	ln -s /usr/share/munin/plugins/elasticsearch_cluster_shards /etc/munin/plugins/elasticsearch_cluster_shards
+	ln -s /usr/share/munin/plugins/elasticsearch_index_total /etc/munin/plugins/elasticsearch_index_total
+	ln -s /usr/share/munin/plugins/elasticsearch_index_size /etc/munin/plugins/elasticsearch_index_size
+	ln -s /usr/share/munin/plugins/elasticsearch_docs /etc/munin/plugins/elasticsearch_docs
+	ln -s /usr/share/munin/plugins/elasticsearch_cache /etc/munin/plugins/elasticsearch_cache
+	service munin-node restart
+	munin-run elasticsearch_cache
+
+	sudo nano /etc/php/8.3/fpm/pool.d/www.conf
+	pm.status_path = /status
+	ping.path = /ping
+
+
+sudo nano /etc/nginx/sites-available/default
+
+<pre>
+server {
+#### STATUS...
+        server_name localhost;
+        server_name 127.0.0.1;
+        access_log off;
+
+        location /nginx_status {
+                stub_status on;
+                allow 127.0.0.1;
+                deny all;
+        }
+
+        location ~ ^/(status|ping)$ {
+            include fastcgi_params;
+            fastcgi_param SCRIPT_FILENAME $fastcgi_script_name;
+            fastcgi_pass unix:/var/run/php/php8.3-fpm.sock;
+             allow 127.0.0.1;
+             deny all;
+        }
+}
+</pre>
 
 ### Installer argos-translate (traduction offline)
 
