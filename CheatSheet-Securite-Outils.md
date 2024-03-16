@@ -76,6 +76,10 @@ Scan IP sur le reseau local :
 
     docker run --name=xssstrike -it --rm femtopixel/xsstrike -u http://www.xxxx.x --crawl --blind
 
+#### openvas avec administration sur le port 8080 (fonctionne) :
+
+	sudo docker run --detach --publish 8080:9392 -e PASSWORD="password" --volume openvas:/data --name openvas immauss/openvas
+ 
 #### openvas (fonctionne) :
 
     docker run --rm -v $(pwd):/openvas/results/ ictu/openvas-docker /openvas/run_scan.py 1.2.3.X,www.xxxx.x openvas_scan_report
