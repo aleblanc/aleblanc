@@ -76,9 +76,10 @@ Scan IP sur le reseau local :
 
     docker run --name=xssstrike -it --rm femtopixel/xsstrike -u http://www.xxxx.x --crawl --blind
 
-#### openvas avec administration sur le port 8080 (fonctionne) :
+#### openvas avec administration sur le port 8080 (fonctionne démarre en 15 minutes sur Raspberry Pi) :
 
 	sudo docker run --detach --publish 8080:9392 -e PASSWORD="password" --volume openvas:/data --name openvas immauss/openvas
+ 	sudo docker logs --follow  openvas
  
 #### openvas (fonctionne) :
 
