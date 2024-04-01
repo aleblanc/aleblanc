@@ -156,15 +156,21 @@ composer des images et les rendres transparentes :
 ### combiner un format audio et video
 
 	yt-dlp -f "hls-audio-AAC_und_ch2_128kbps+hls-1675" LINK_URL
+### telecharger une video au meilleur format avec youtube-dl ou yt-dlp
+
+	yt-dlp -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best" URL
  
 ### find a file
+
     find . -name "file.tpl"
 
 ### find recent modified files
+
     find . -mtime -2 -print
 
 
 ### remplacer les droits depuis un find :
+
     find . -name '*.php' -print0 | xargs -0 chmod 644
     find /var/www/site/ -mindepth 1 -type d -exec chmod 750 {} \;
     find /var/www/site/ -mindepth 1 -type f -exec chmod 640 {} \;
