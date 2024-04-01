@@ -238,3 +238,11 @@ https://www.google-analytics.com/collect?v=1&tid=UA-XXXXX&cid=1260961011.1389432
 9. Similar web:
    https://www.similarweb.com/website/xxx.x
 
+### Outils 
+
+Multiple outils pour developpeurs : https://devtoys.app/
+Outils de test d'api : https://insomnia.rest/
+Notepadd++ pour Mac : https://brackets.io/
+
+ 
+
