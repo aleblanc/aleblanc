@@ -14,6 +14,12 @@ restaurer
     cp /Users/user/Documents/backupfirefox/previous.jsonlz4 /Users/user/Library/Application\ Support/Firefox/Profiles/xxxxxxxx/sessionstore-backups/
 
 ### brew
+
+installation :
+    
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
 update macosx brew :
 
     brew update
