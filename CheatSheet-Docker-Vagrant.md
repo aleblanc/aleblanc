@@ -78,3 +78,42 @@ https://hub.docker.com/_/php?tab=description&page=141
 	curl -XDELETE 'http://localhost:9200/xxxxx'
 	curl -XPUT 'http://localhost:9200/xxxxx?pretty'
 	php bin/console index:elasticsearch
+
+
+
+### flaresolverr à travers le proxy d'Opera
+
+	sudo docker network create mynet
+
+	sudo docker run -d \
+	--security-opt no-new-privileges \
+	-p 127.0.0.1:18080:18080 \
+	--restart unless-stopped \
+	--network mynet \
+	--name opera-proxy \
+	yarmak/opera-proxy
+
+	sudo docker run -d \
+	-e LOG_LEVEL=info \
+	-e PROXY_URL=http://opera-proxy:18080 \
+	-p 127.0.0.1:8191:8191 \
+	--network mynet \
+	--name flaresolverr \
+	--restart unless-stopped \
+	ghcr.io/flaresolverr/flaresolverr:latest
+
+
+	curl -X POST 'http://localhost:8191/v1' -H 'Content-Type: application/json' --data-raw '{
+	"cmd": "request.get",
+	"url": "https://ifconfig.me/all.json",
+	"maxTimeout": 60000,
+	"proxy": {
+	"url": "http://opera-proxy:18080"
+	}
+	}'
+
+	curl https://ifconfig.me/all.json
+
+rotation ip :
+
+	sudo docker restart opera-proxy
