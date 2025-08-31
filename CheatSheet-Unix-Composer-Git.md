@@ -82,6 +82,29 @@ ssh -N -R 10022:127.0.0.1:22 user_serveur2@X.X.X.X
 Sur le serveur2 :
 ssh -p 10022 user_serveur1@127.0.0.1
 
+### proton vpn raspberry pi
+
+generer conf wiregauard sur https://account.protonvpn.com/downloads
+
+	sudo apt install wireguard -y
+	nano  /etc/wireguard/wg-protonvpn.conf
+	chmod 660  /etc/wireguard/wg-protonvpn.conf
+	sudo wg-quick up /etc/wireguard/wg-protonvpn.conf
+ 	sudo systemctl enable wg-quick@wg-protonvpn
+  
+### créer hotspot raspberry pi 
+
+	sudo nmcli connection add type wifi ifname wlan0 con-name hotspot ssid "Hotspot"
+	sudo nmcli connection modify hotspot 802-11-wireless.mode ap
+	sudo nmcli connection modify hotspot 802-11-wireless.band bg
+	sudo nmcli connection modify hotspot wifi-sec.key-mgmt wpa-psk
+	sudo nmcli connection modify hotspot wifi-sec.psk "PASSWORD"
+	sudo nmcli connection modify hotspot ipv4.method shared
+	sudo nmcli connection modify hotspot ipv6.method ignore
+	sudo nmcli connection modify hotspot ipv4.addresses 10.43.0.1/24
+	sudo nmcli connection modify hotspot connection.autoconnect yes
+	sudo nmcli connection up hotspot
+
 ### BUG write only Read-only file system :
 
 	su
@@ -148,6 +171,11 @@ composer des images et les rendres transparentes :
 ### rename retrait des caracères non aplhanumériques
 
 	rename -n 's/[^A-Za-z0-9]/./g' *
+ 
+### install yt-dlp
+		
+	  sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp
+	  sudo chmod a+rx /usr/local/bin/yt-dlp
  
 ### convertir une playlist et la convertir en mp3
 	
