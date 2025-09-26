@@ -77,10 +77,27 @@
 ### tunnel de connexion ssh inversé
 
 Sur le serveur1 :
-ssh -N -R 10022:127.0.0.1:22 user_serveur2@X.X.X.X
+
+	ssh -N -R 10022:127.0.0.1:22 user_serveur2@X.X.X.X
 
 Sur le serveur2 :
-ssh -p 10022 user_serveur1@127.0.0.1
+
+	ssh -p 10022 user_serveur1@127.0.0.1
+
+nano /etc/systemd/system/autossh-tunnel.service 
+
+	[Unit]
+	Description=AutoSSH reverse tunnel
+	After=network.target
+	
+	[Service]
+	User=pi
+	ExecStart=/usr/bin/autossh -M 20000  -o "ServerAliveInterval 60" -o "ServerAliveCountMax 5"  -N -R 10022:localhost:22 user_serveur2@X.X.X.X
+	Restart=always
+	RestartSec=10
+	
+	[Install]
+	WantedBy=multi-user.target
 
 ### proton vpn raspberry pi
 
