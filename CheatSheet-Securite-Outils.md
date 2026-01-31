@@ -44,6 +44,10 @@ Scan plage d'IP :
 Scan IP sur le reseau local :
 
     sudo nmap -sP 192.168.0.0/10
+	
+Scan IP smarche sur éléments cachés :
+
+	sudo nmap -sV --version-light --open --send-ip 192.168.8.0/24 10.43.0.0/24 192.168.1.0/24 | grep -vE "^SF:|unrecognized|fingerprints|SUBMIT|SERVICE FINGERPRINT|====="
 
 ### Outils
 
