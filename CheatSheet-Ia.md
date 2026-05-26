@@ -31,3 +31,14 @@ docker run --rm claude-code composer -V
 
 alias cld='docker run -it --rm -v "$(pwd)":"$(pwd)" -v "$HOME/.claude":/root/.claude -v "$HOME/.config/ccstatusline":/root/.config/ccstatusline -v "$HOME/.claude.json":/root/.claude.json -e CLAUDE_CODE_USE_KEYCHAIN=false -e TERM=xterm-256color -e COLORTERM=truecolor -e COLUMNS=$(tput cols) -e LINES=$(tput lines) -w "$(pwd)" claude-code claude'
 
+
+# rapsberry pi remote controle with claude
+
+tmux new -s claude
+source ~/.bashrc 
+cd project/
+TERM=xterm-256color cld
+/remote-control
+# CTRL + B  
+# D (détache tmux)
+  
