@@ -32,6 +32,14 @@ docker run --rm claude-code composer -V
 alias cld='docker run -it --rm -v "$(pwd)":"$(pwd)" -v "$HOME/.claude":/root/.claude -v "$HOME/.config/ccstatusline":/root/.config/ccstatusline -v "$HOME/.claude.json":/root/.claude.json -e CLAUDE_CODE_USE_KEYCHAIN=false -e TERM=xterm-256color -e COLORTERM=truecolor -e COLUMNS=$(tput cols) -e LINES=$(tput lines) -w "$(pwd)" claude-code claude'
 
 
+# update claude docker 
+
+docker run --name claude-tmp claude-code bash -c "npm install -g @anthropic-ai/claude-code && npm install -g ccstatusline"
+docker commit claude-tmp claude-code
+docker rm claude-tmp
+
+alias cld-update='docker run --name claude-tmp claude-code bash -c "npm install -g @anthropic-ai/claude-code && npm install -g ccstatusline" && docker commit claude-tmp claude-code && docker rm claude-tmp'
+
 # rapsberry pi remote controle with claude
 
 tmux new -s claude
