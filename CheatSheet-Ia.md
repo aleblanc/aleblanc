@@ -1,6 +1,8 @@
 Claude code dans un docker avec ccstatusline
 
 # Rebuild
+
+<pre>
 docker run --name claude-tmp php:8.5-cli bash -c '
 set -e
 apt-get update && apt-get install -y \
@@ -21,8 +23,11 @@ npm install -g @anthropic-ai/claude-code ccstatusline
 docker commit claude-tmp claude-code
 
 docker rm claude-tmp
+</pre>
 
 # Vérifie les versions
+
+<pre>
 docker run --rm claude-code php -v
 
 docker run --rm claude-code node -v
@@ -30,18 +35,21 @@ docker run --rm claude-code node -v
 docker run --rm claude-code composer -V
 
 alias cld='docker run -it --rm -v "$(pwd)":"$(pwd)" -v "$HOME/.claude":/root/.claude -v "$HOME/.config/ccstatusline":/root/.config/ccstatusline -v "$HOME/.claude.json":/root/.claude.json -e CLAUDE_CODE_USE_KEYCHAIN=false -e TERM=xterm-256color -e COLORTERM=truecolor -e COLUMNS=$(tput cols) -e LINES=$(tput lines) -w "$(pwd)" claude-code claude'
-
+</pre>
 
 # update claude docker 
 
+<pre>
 docker run --name claude-tmp claude-code bash -c "npm install -g @anthropic-ai/claude-code && npm install -g ccstatusline"
 docker commit claude-tmp claude-code
 docker rm claude-tmp
 
 alias cld-update='docker run --name claude-tmp claude-code bash -c "npm install -g @anthropic-ai/claude-code && npm install -g ccstatusline" && docker commit claude-tmp claude-code && docker rm claude-tmp'
+</pre>
 
 # rapsberry pi remote controle with claude
 
+<pre>
 tmux new -s claude
 source ~/.bashrc 
 cd project/
@@ -49,4 +57,4 @@ TERM=xterm-256color cld
 /remote-control
 # CTRL + B  
 # D (détache tmux)
-  
+</pre>
