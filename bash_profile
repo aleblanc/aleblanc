@@ -29,6 +29,7 @@ alias nginxRestart="sudo brew services restart nginx"
 alias nginxStart="sudo brew services start nginx"
 alias nginxStop="sudo brew services stop nginx"
 alias sf="php bin/console "
+alias sfc='php bin/console c:c && php bin/console '
 alias cc="php bin/console clear:cache "
 alias phplog='log stream --info --debug --predicate "process CONTAINS '\''php'\''" --style syslog'
 alias phplogfpm='log stream --info --debug --predicate "process CONTAINS '\''php-fpm'\''" --style syslog'
