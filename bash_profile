@@ -3,6 +3,10 @@ export EDITOR=/usr/bin/nano
 export GITHUB_TOKEN=
 
 
+alias zshrc_version="echo V1.3"
+alias glow='glow -w 0 '
+alias md='glow -p -w 0 '
+alias clear='printf "\033[2J\033[3J\033[H"'
 alias ytdl="yt-dlp -f \"bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best\" "
 alias editHosts="sudo nano /etc/hosts"
 alias psg='ps aux | grep'
