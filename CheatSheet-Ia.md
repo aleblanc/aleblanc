@@ -7,7 +7,7 @@ avec playwright -- CONF OK
 docker run --name claude-tmp php:8.5-cli bash -c '
   set -e
   apt-get update && apt-get install -y \
-    curl unzip git jq libzip-dev libicu-dev libxml2-dev libonig-dev openssh-client
+    curl unzip git jq libzip-dev libicu-dev libxml2-dev libonig-dev openssh-client imagemagick
   docker-php-ext-install mbstring xml zip intl pdo pdo_mysql
   curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
   curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
