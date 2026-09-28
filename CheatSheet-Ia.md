@@ -18,6 +18,12 @@ docker run --name claude-tmp php:8.5-cli bash -c '
 
 </pre>
 
+# claude authentification longue durée (1 an)
+
+<pre>
+ claude setup-token
+</pre>
+
 # Vérifie les versions
 
 <pre>
@@ -27,7 +33,7 @@ docker run --rm claude-code node -v
 
 docker run --rm claude-code composer -V
 
-alias cld='docker run -it --rm --shm-size=1g --cpus=2 --memory=3g -v "$(pwd)":"$(pwd)" -v "$HOME/.claude":/root/.claude -v "$HOME/.config/ccstatusline":/root/.config/ccstatusline -v "$HOME/.claude.json":/root/.claude.json -e CLAUDE_CODE_USE_KEYCHAIN=false -e TERM=xterm-256color -e COLORTERM=truecolor -e COLUMNS=$(tput cols) -e LINES=$(tput lines) -w "$(pwd)" claude-code claude'
+alias cld='docker run -it --rm --shm-size=1g --cpus=2 --memory=3g -v "$(pwd)":"$(pwd)" -v "$HOME/.claude":/root/.claude -v "$HOME/.config/ccstatusline":/root/.config/ccstatusline -v "$HOME/.claude.json":/root/.claude.json -e CLAUDE_CODE_OAUTH_TOKEN=sk-ant-oat01-xxxxx  -e CLAUDE_CODE_USE_KEYCHAIN=false -e TERM=xterm-256color -e COLORTERM=truecolor -e COLUMNS=$(tput cols) -e LINES=$(tput lines) -w "$(pwd)" claude-code claude'
 </pre>
 
 # update claude docker 
