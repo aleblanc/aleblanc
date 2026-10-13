@@ -55,11 +55,11 @@ fi"
   done
 }
 
-# Liste les alias ssh_* dont la définition est exactement "ssh user@domaine"
+# Liste les alias ssh_* dont la définition est exactement "ssh [user@]domaine"
 _eternal_candidates() {
   local a
   for a in ${(ko)aliases}; do
-    [[ "$a" == ssh_* && "${aliases[$a]}" =~ '^ssh [A-Za-z0-9._-]+@[A-Za-z0-9._-]+$' ]] && echo "$a"
+    [[ "$a" == ssh_* && "${aliases[$a]}" =~ '^ssh ([A-Za-z0-9._-]+@)?[A-Za-z0-9._-]+$' ]] && echo "$a"
   done
 }
 
