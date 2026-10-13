@@ -10,7 +10,7 @@ _reload_aliases
 
 # ===================== eternalSSH : ssh persistant (tmux/screen, sans dépendance) =====================
 
-ETERNAL_NAME="alex"   # nom du socket/session, isolé des autres utilisateurs du compte
+ETERNAL_NAME="SOCKET_NAME"   # nom du socket/session, isolé des autres utilisateurs du compte
 ETERNAL_RETRY=5       # secondes entre deux tentatives de reconnexion
 
 _eternal_launch() {
