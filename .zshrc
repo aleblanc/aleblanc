@@ -1,11 +1,26 @@
-# Alias auto-rechargés à chaque prompt (put aliases in zsh_aliases)
+# Alias auto-reloaded at prompt time, only when ~/.zsh_aliases has changed
+zmodload -F zsh/stat b:zstat 2>/dev/null
+typeset -g _ALIASES_MTIME
+typeset -ga _ALIASES_OWN
 _reload_aliases() {
-  [[ -f ~/.zsh_aliases ]] && source ~/.zsh_aliases
+  local f=~/.zsh_aliases m
+  [[ -f $f ]] || return
+  if (( $+builtins[zstat] )); then
+    zstat -A m +mtime -- $f 2>/dev/null || return
+    [[ $m == $_ALIASES_MTIME ]] && return
+    _ALIASES_MTIME=$m
+  fi
+  # Drop aliases defined by the previous load so deleted ones disappear
+  (( $#_ALIASES_OWN )) && unalias -- $_ALIASES_OWN 2>/dev/null
+  local -a before after
+  before=(${(k)aliases})
+  source $f
+  after=(${(k)aliases})
+  _ALIASES_OWN=(${after:|before})
 }
 autoload -Uz add-zsh-hook
 add-zsh-hook precmd _reload_aliases
 _reload_aliases
-
 
 
 # ===================== eternalSSH : ssh persistant (tmux/screen, sans dépendance) =====================
