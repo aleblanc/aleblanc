@@ -36,7 +36,7 @@ _eternal_launch() {
   exec tmux -L ${n} start-server \\; set -g mouse off \\; set -g history-limit 50000 \\; set -g status off \\; set -ga terminal-overrides ',xterm*:smcup@:rmcup@' \\; new -A -s ${n}
 elif command -v screen >/dev/null 2>&1; then
   f=\$(mktemp /tmp/.${n}-screenrc.XXXXXX)
-  printf '%s\\n' 'defscrollback 50000' 'termcapinfo xterm* ti@:te@' 'altscreen off' 'startup_message off' > \"\$f\"
+  printf '%s\\n' 'defscrollback 50000' 'termcapinfo xterm* ti@:te@' 'altscreen on' 'startup_message off' > \"\$f\"
   screen -ls | grep -q \"[.]${n}[[:space:]]\" || screen -c \"\$f\" -dmS ${n}
   screen -c \"\$f\" -S ${n} -xRR
   rc=\$?; rm -f \"\$f\"; exit \$rc
